@@ -33,7 +33,7 @@ export default function TextForm(props) {
 const [text, setText] = useState("");
   return (
     <>
-    <div className="container">
+    <div className="container" >
         <h1>{props.heading}</h1>
         <div className="mb-3">
             <textarea className="form-control" value={text} id="exampleFormControlTextarea1" onChange={(event)=> {

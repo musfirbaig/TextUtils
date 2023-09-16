@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className={`navbar bg-${props.theme.bg} border-bottom border-body`} data-bs-theme={props.theme.bg}>
     <div className="container-fluid">
       <a className="navbar-brand" href="/">{props.title}</a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,12 +17,19 @@ export default function Navbar(props) {
           <li className="nav-item">
             <a className="nav-link" href="/">About</a>
           </li>
-          
+            <div className="form-check form-switch">
+            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={
+                ()=>{
+                    if (props.theme.bg === "light"){
+                        props.setTheme({bg: "dark", color: "white"});
+                    }else{
+                        props.setTheme({bg: "light", color: "black"});
+                    }
+                }
+            }/>
+            <label className="form-check-label" forHtml="flexSwitchCheckDefault" style={{color:props.theme.color}}>Enable Dark Mode</label>
+            </div>
         </ul>
-        <form className="d-flex" role="search">
-          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button className="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>
