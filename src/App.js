@@ -1,9 +1,15 @@
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import Alert from './components/Alert';
 import TextForm from './components/TextForm';
 import {useState} from 'react';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   const [theme, setTheme] = useState({
@@ -39,14 +45,18 @@ function App() {
     }
   }
   return (
-    <>
+    <Router>
       <Navbar title="TextUtils" theme={theme} setTheme={changeTheme}/>
       <Alert alert={alert}/>
       <div className="container">
-        <TextForm heading="Enter the Text to analyze" theme={theme}/>  
-        {/* <About /> */}
+      <Routes>
+        <Route path="/about" element={<About />} />
+
+        <Route path="/" element={<TextForm heading="Enter the Text to analyze" theme={theme} />} />
+
+        </Routes>
       </div>
-    </>
+    </Router>
   );
 }
 
